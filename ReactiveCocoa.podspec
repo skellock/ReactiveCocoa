@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
                    "5. A lovely API on top of KVO."
 
   s.requires_arc = true
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.7'
   s.compiler_flags = '-DOS_OBJECT_USE_OBJC=0'
 
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
     s.source_files = 'ReactiveCocoaFramework/ReactiveCocoa/**/*.{h,m}'
     s.exclude_files = 'ReactiveCocoaFramework/ReactiveCocoa/RACObjCRuntime.{h,m}'
     s.ios.exclude_files = '**/*{NSButton,AppKit,NSText,NSControl}*'
-    s.osx.exclude_files = '**/*{UIBarButtonItem,UIControl,UIGestureRecognizer,UIText,RACEventTrampoline,RACDelegateProxy}*'
+    s.osx.exclude_files = '**/*{UIAlertView,UIButton,UITableViewCell,UIActionSheet,UIBarButtonItem,UIControl,UIGestureRecognizer,UIText,RACEventTrampoline,RACDelegateProxy}*'
     sp.header_dir = 'ReactiveCocoa'
 
     sp.dependency 'JRSwizzle', '~> 1.0'
@@ -35,6 +35,12 @@ Pod::Spec.new do |s|
         end
       }
     end
+  end
+
+  s.subspec 'fishhook' do |sp|
+    sp.source_files = 'external/fishhook/*.{h,c}'
+    sp.osx.exclude_files = 'external/fishhook/*.{h,c}'
+    sp.dependency 'ReactiveCocoa/Core'
   end
 
   s.subspec 'RACExtensions' do |sp|
